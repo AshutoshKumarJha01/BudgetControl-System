@@ -1,0 +1,54 @@
+ <div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-6">
+      <h2 class="text-center" style="color:rgb(73, 112, 144);"><b>Latest News</b></h2><hr>
+      <?php 
+      $curl = curl_init();
+      curl_setopt_array($curl, [
+          CURLOPT_URL => "https://mboum.com/api/v1/ne/news/?symbol=AAPL",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "GET",
+          CURLOPT_HTTPHEADER => [
+              "X-Mboum-Secret: u3CrZnCI6T3cGg6a6gw9adu4nWQfiKTtyz0FXzL7EvkBzcqmH3ZPTwClLLjt"
+          ],
+      ]);
+      $response = curl_exec($curl);
+      $err = curl_error($curl);
+      curl_close($curl);
+
+      if ($err) {
+          echo "cURL Error #:" . $err;
+      } else {
+        
+          $response=json_decode($response);
+      ?>
+      <?php for($i=0;$i<count($response->item);$i++){?>
+        
+        <?php  $time=strtotime($response->item[$i]->pubDate);
+                $new_day=date("d-m-y",$time); 
+                $current_day=date('d-m-y', strtotime(date('d-m-Y')));
+          ?>
+
+          <?php if($new_day==$current_day):?>
+              <div class="card border-light mb-3">
+                  <div class="card-header" style="box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);">
+                    <b><?php echo $response->item[$i]->title; ?></b>
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                      <p><?php echo $response->item[$i]->description; ?></p>
+                       <footer class="blockquote-footer"><?php echo $response->item[$i]->pubDate;?></footer>
+                      
+                  </blockquote>
+              </div>
+              </div><br>
+          <?php endif;?>
+      <?php  } }?>
+    </div>
+  </div>
+</div>

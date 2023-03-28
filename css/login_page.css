@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        font-family: "Montserrat", sans-serif;
+        background: #fff;
+        color: #444;
+    }
+    .main
+    {
+        width: 30vw;
+        display: flex;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.6), 0 8px 15px 6px rgba(0, 0, 0, 0.18);
+    }     
+    .navbar-dark{
+        background-color: #24355C;
+    }
+    .navbar-dark .navbar-nav .nav-link{
+        font-weight: 700;
+        color: #fff !important;
+        text-transform: capitalize;
+    }
+    
+    .form-group {
+        
+        transition: all .3s;
+        margin: auto;
+    }
+     .form-control{
+        width: 100%;
+        border-radius: 0;
+        border-style: none none solid none;
+        transition: all .5s;
+        border-width: 1.5px;
+        font-size: 14px;
+        background: transparent;
+    }
+    .form-label{
+        font-size: 14px;
+        position: absolute;
+        transform: translateY(-1.50em) translateX(2px);
+        transform-origin: 0 0;
+        opacity: 1;
+        transition: all .5s;
+    }
+    #in{
+        display: none;
+    }
+    .content{
+      height: 85vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer
+    {
+        width: 100%;
+        background-color: rgba(0,0,0,0.9);
+        color: #C0C0C0;
+        padding: 4px 0;
+        text-align: center;
+    }
+
+
+@media(max-width: 575.98px)
+{
+    .main
+    {
+        width: 70%;
+    }
+}
+@media(min-width: 576px) and (max-width: 767.98px)
+{
+    .main{
+        width: 45%;
+    }
+}
+@media(min-width: 768px) and (max-width: 991.98px)
+{
+    .main{
+        width: 40%;
+    }
+    
+}
